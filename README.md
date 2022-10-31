@@ -31,6 +31,7 @@ $ curl --location --request POST 'http://127.0.0.1:8080/upload?public=false'  --
 
 ### 常见问题
 
+- MinIO服务在Mac搭建步骤 [minio_server_on_mac.md](minio_server_on_mac.md)
 - MinIO-Java SDK依赖的OkHTTP3版本被Spring覆盖的问题 [issue_1_okhttp_version.md](issues/issue_1_okhttp_version.md)
 - MinIO服务使用自签名TLS证书会导致上传失败问题
 参考 [issue_2_self_sign_tls_certificate_verify_failed.md](issues/issue_2_self_sign_tls_certificate_verify_failed.md)
