@@ -1,4 +1,4 @@
-package com.gongpengjun.hellominio;
+package com.gongpengjun;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.gongpengjun.hellominio;
+package com.gongpengjun;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
