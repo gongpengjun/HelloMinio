@@ -1,0 +1,30 @@
+# Serer Port
+server:
+  port: 8080
+
+# Spring Application name
+spring:
+  application:
+    name: HelloMinIO
+
+# MinIO config
+minio:
+  endpoint: http://127.0.0.1:9001
+  accesskey: minioadmin
+  secretKey: minioadmin
+  publicBucketName: baby-public
+  privateBucketName: baby-private
+
+---
+spring:
+  profiles: development
+
+
+---
+spring:
+  profiles: test
+
+
+---
+spring:
+  profiles: production
