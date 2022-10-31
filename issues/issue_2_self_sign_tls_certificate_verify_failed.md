@@ -1,14 +1,17 @@
+## MinIO自签名校验问题
 
 ### 问题现象
 
+```shell
 javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
-
+```
 
 ### 根因分析
 
 https://confluence.atlassian.com/kb/unable-to-connect-to-ssl-services-due-to-pkix-path-building-failed-error-779355358.html
 https://confluence.atlassian.com/kb/how-to-import-a-public-ssl-certificate-into-a-jvm-867025849.html
 
+```shell
 gongpengjun@mbp tools$ pwd
 /Users/gongpengjun/workspace/java/HelloMinio/tools
 gongpengjun@mbp tools$ java SSLPoke 127.0.0.1 9001
@@ -108,12 +111,14 @@ Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to
 	at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:434)
 	... 21 more
 gongpengjun@mbp tools$
+```
 
 ### 解决方案
 
 https://confluence.atlassian.com/kb/how-to-import-a-public-ssl-certificate-into-a-jvm-867025849.html
 https://stackoverflow.com/a/22782035/328435
 
+```shell
 gongpengjun@mbp tools$ ls -lrth ~/.minio/certs/public.crt
 -rw-r--r--  1 gongpengjun  staff   717B 10 30 11:43 /Users/gongpengjun/.minio/certs/public.crt
 gongpengjun@mbp tools$ ls -lrth $JAVA_HOME/jre/lib/security/cacerts
@@ -174,14 +179,25 @@ KeyIdentifier [
 是否信任此证书? [否]:  y
 证书已添加到密钥库中
 gongpengjun@mbp tools$
+```
 
 ### 效果验证
 
+SSLPoke验证：
+
+```shell
 gongpengjun@mbp tools$ java SSLPoke 127.0.0.1 9001
 Successfully connected
+```
 
+Java Application验证：
 
+```shell
 curl --location --request POST 'http://127.0.0.1:8080/upload?public=true' \
 --form 'file=@"/Users/gongpengjun/Downloads/Communication_Milestones.png"'
-{"msg":"https://127.0.0.1:9001/baby-public/baby-public_1667204831306.png","code":1,"minio_response":"io.minio.ObjectWriteResponse@658f7f4c"}
-
+{
+  "msg": "https://127.0.0.1:9001/baby-public/baby-public_1667204831306.png",
+  "code": 1,
+  "minio_response": "io.minio.ObjectWriteResponse@658f7f4c"
+}
+```
