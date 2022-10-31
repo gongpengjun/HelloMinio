@@ -31,5 +31,6 @@ $ curl --location --request POST 'http://127.0.0.1:8080/upload?public=false'  --
 
 ### 常见问题
 
-MinIO服务使用自签名TLS证书会导致上传失败，
-参考[SSLPoke_README.txt](tools/SSLPoke_README.txt)将自签名证书导入JVM Key store解决该问题。
+- MinIO-Java SDK依赖的OkHTTP3版本被Spring覆盖的问题 [issue_1_okhttp_version.md](issues/issue_1_okhttp_version.md)
+- MinIO服务使用自签名TLS证书会导致上传失败问题
+参考 [issue_2_self_sign_tls_certificate_verify_failed.md](issues/issue_2_self_sign_tls_certificate_verify_failed.md)
