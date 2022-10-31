@@ -2,6 +2,7 @@
 
 - 使用MinIO搭建本地S3开发服务器
 - 使用minio-java SDK开发上传MinIO的服务供客户端使用
+  - 参考文档：https://min.io/docs/minio/linux/developers/java/API.html
 
 ### 运行示例
 
